@@ -5,6 +5,10 @@
   justify-content: center;
 }
 
+.users-container {
+  width: 90vw;
+}
+
 ul {
   margin: 0;
   padding: 0;

@@ -14,7 +14,7 @@ function Users() {
   }, []);
 
   return (
-    <div>
+    <div className="users-container">
       {users ? (
         <ul aria-labelledby="users-heading">
           {users.map((user) => (
