@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import axios from "axios";
-import Users from "./components/Users";
+import Users from "./components/users/Users";
+import User from "./components/user/User";
 import "./App.css";
 
 export const usersURL = "https://randomuser.me/api/?results=16";
@@ -20,7 +22,16 @@ function App() {
       <header className="App-header">
         <h1 id="users-heading">Users</h1>
       </header>
-      <Users users={users} />
+      <Router>
+        <Switch>
+          <Route exact path="/">
+            <Users users={users} />
+          </Route>
+          <Route path="/user/:username">
+            <User />
+          </Route>
+        </Switch>
+      </Router>
     </div>
   );
 }
