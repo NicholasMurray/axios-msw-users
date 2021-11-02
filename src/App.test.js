@@ -1,4 +1,4 @@
-import { render, screen, act, waitFor } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import App, { usersURL } from "./App";
 
 import { rest } from "msw";
@@ -51,11 +51,8 @@ afterEach(() => server.resetHandlers());
 afterAll(() => server.close());
 
 test("renders header title", async () => {
-  //render(<App />);
-
   await waitFor(() => render(<App />));
 
-  // const headerTitle = await screen.findByText(/Users/);
-  // expect(headerTitle).toBeInTheDocument();
-  expect(await screen.findByText(/Users/)).toBeInTheDocument();
+  const headerTitle = await screen.findByText(/Users/);
+  expect(headerTitle).toBeInTheDocument();
 });

@@ -33,6 +33,12 @@ const results = [
   },
 ];
 
+test("it should have the correct username TestyMcTesty", async () => {
+  render(<Users users={results} />);
+  const user = await screen.findByText("TestyMcTesty");
+  expect(user).toBeVisible();
+});
+
 test("User Avatat must have a src and an alt of username", async () => {
   render(<Users users={results} />);
   const avatar = await screen.findByRole("img");
