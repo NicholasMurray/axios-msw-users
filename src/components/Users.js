@@ -1,18 +1,4 @@
-import { useState, useEffect } from "react";
-import axios from "axios";
-
-export const userURL = "https://randomuser.me/api/?results=16";
-
-function Users() {
-  const [users, setUsers] = useState();
-
-  useEffect(() => {
-    axios
-      .get(userURL)
-      .then((response) => response.data)
-      .then((data) => setUsers(data.results));
-  }, []);
-
+function Users({ users }) {
   return (
     <div className="users-container">
       {users ? (
