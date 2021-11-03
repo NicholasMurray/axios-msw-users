@@ -1,31 +1,33 @@
-import { BrowserRouter as Router, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { useContext } from "react";
+import UsersContext from "./../../providers/UsersContext";
 
-function Users({ users }) {
+function Users() {
+  const value = useContext(UsersContext);
+
   return (
-    <Router>
-      <div className="users-container">
-        {users ? (
-          <ul aria-labelledby="users-heading">
-            {users.map((user) => (
-              <li key={user.login.uuid}>
-                <img
-                  src={user.picture.medium}
-                  alt={user.login.username}
-                  title={user.login.username}
-                />
-                <p>
-                  <Link to={`/user/${user.login.username}`}>
-                    {user.login.username}
-                  </Link>
-                </p>
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <span>No users currently</span>
-        )}
-      </div>
-    </Router>
+    <div className="users-container">
+      {value ? (
+        <ul aria-labelledby="users-heading">
+          {value.map((user) => (
+            <li key={user.login.uuid}>
+              <img
+                src={user.picture.medium}
+                alt={user.login.username}
+                title={user.login.username}
+              />
+              <p>
+                <Link to={`/user/${user.login.username}`}>
+                  {user.login.username}
+                </Link>
+              </p>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <span>No users currently</span>
+      )}
+    </div>
   );
 }
 
