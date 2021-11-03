@@ -1,30 +1,26 @@
-import { useState, useEffect } from "react";
-import axios from "axios";
-
-export const userURL = "https://randomuser.me/api/?results=16";
+import { Link } from "react-router-dom";
+import { useContext } from "react";
+import UsersContext from "./../../providers/UsersContext";
 
 function Users() {
-  const [users, setUsers] = useState();
-
-  useEffect(() => {
-    axios
-      .get(userURL)
-      .then((response) => response.data)
-      .then((data) => setUsers(data.results));
-  }, []);
+  const value = useContext(UsersContext);
 
   return (
     <div className="users-container">
-      {users ? (
+      {value ? (
         <ul aria-labelledby="users-heading">
-          {users.map((user) => (
+          {value.map((user) => (
             <li key={user.login.uuid}>
               <img
                 src={user.picture.medium}
                 alt={user.login.username}
                 title={user.login.username}
               />
-              <p>{user.login.username}</p>
+              <p>
+                <Link to={`/user/${user.login.username}`}>
+                  {user.login.username}
+                </Link>
+              </p>
             </li>
           ))}
         </ul>
