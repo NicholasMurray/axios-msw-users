@@ -22,7 +22,7 @@ function App() {
     <UsersContext.Provider value={users}>
       <div className="App">
         <header className="App-header">
-          <h1 id="users-heading">Random Users</h1>
+          <h1 id="users-heading">Random Developers</h1>
         </header>
         <Router>
           <Switch>

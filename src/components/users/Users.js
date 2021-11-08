@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import UsersContext from "./../../providers/UsersContext";
+import { AngularIcon, ReactIcon, VueIcon } from "./../icons/index";
 
 function Users() {
   const value = useContext(UsersContext);
@@ -16,11 +17,16 @@ function Users() {
                 alt={user.login.username}
                 title={user.login.username}
               />
-              <p>
+              <div className="icons-container">
+                <AngularIcon />
+                <ReactIcon />
+                <VueIcon />
+              </div>
+              <div>
                 <Link to={`/user/${user.login.username}`}>
                   {user.login.username}
                 </Link>
-              </p>
+              </div>
             </li>
           ))}
         </ul>

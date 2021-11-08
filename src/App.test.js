@@ -24,6 +24,6 @@ afterAll(() => server.close());
 test("renders header title", async () => {
   await waitFor(() => render(<App />));
 
-  const headerTitle = await screen.findByText(/Random Users/);
+  const headerTitle = await screen.findByText(/Random Developers/);
   expect(headerTitle).toBeInTheDocument();
 });
