@@ -11,15 +11,16 @@ function Skills({ user }) {
     skills[e.currentTarget.getAttribute("data-skill")] =
       !skills[e.currentTarget.getAttribute("data-skill")];
 
-    setSkills(skills);
-
-    dispatch({
-      type: "UPDATE_SKILL",
-      payload: {
-        id: e.currentTarget.id,
-        skills: skills,
-      },
-    });
+    setSkills(
+      skills,
+      dispatch({
+        type: "UPDATE_SKILL",
+        payload: {
+          id: e.currentTarget.id,
+          skills: skills,
+        },
+      })
+    );
   };
 
   return (

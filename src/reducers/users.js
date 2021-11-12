@@ -21,7 +21,7 @@ export const reducer = (state = initState, action) => {
           return {
             ...user,
             // Update the skills
-            skills: { angular: true, react: true, vue: false },
+            skills: action.payload.skills,
           };
         }),
       };
