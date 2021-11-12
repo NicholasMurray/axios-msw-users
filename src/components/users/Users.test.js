@@ -1,33 +1,31 @@
 import { render, screen } from "@testing-library/react";
 import { BrowserRouter as Router } from "react-router-dom";
-import Users from "./Users";
+import { Provider } from "react-redux";
+import store from "./../../store/store";
 import Results from "../../mocks/data/results";
-import UsersContext from "./../../providers/UsersContext";
+import Users from "./Users";
 
-function renderUsers(users) {
+function renderUsers() {
   return render(
-    <UsersContext.Provider value={users}>
+    <Provider store={store}>
       <Router>
         <Users />
       </Router>
-    </UsersContext.Provider>
+    </Provider>
   );
 }
 
 test("it should have the correct username TestyMcTesty", async () => {
   const users = Results;
-  renderUsers(users);
-  const user = await screen.findByText("TestyMcTesty");
+  renderUsers();
+  const user = await screen.findByText(users[0].login.username);
   expect(user).toBeInTheDocument();
 });
 
-test("User Avatat must have a src and an alt of username", async () => {
+test("User Avatar must have a src and an alt of username", async () => {
   const users = Results;
-  renderUsers(users);
-  const avatar = await screen.findByRole("img");
-  expect(avatar).toHaveAttribute(
-    "src",
-    "https://randomuser.me/api/portraits/med/men/0.jpg"
-  );
-  expect(avatar).toHaveAttribute("alt", "TestyMcTesty");
+  renderUsers();
+  const avatar = await screen.findAllByRole("img");
+  expect(avatar[0]).toHaveAttribute("src", users[0].picture.medium);
+  expect(avatar[0]).toHaveAttribute("alt", users[0].login.username);
 });
