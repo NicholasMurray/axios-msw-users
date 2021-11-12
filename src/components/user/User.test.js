@@ -1,34 +1,34 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
 import { MemoryRouter, Route } from "react-router-dom";
-import User from "./User";
-import UsersContext from "./../../providers/UsersContext";
+import { Provider } from "react-redux";
+import store from "./../../store/store";
 import Results from "../../mocks/data/results";
+import User from "./User";
 
-function renderUser(users, username) {
+const testUserName = Results[0].login.username;
+const testFullName = `${Results[0].name.first} ${Results[0].name.last}`;
+
+function renderUser(username) {
   return render(
-    <UsersContext.Provider value={users}>
+    <Provider store={store}>
       <MemoryRouter initialEntries={[`/user/${username}`]}>
         <Route path="/user/:username">
           <User />
         </Route>
       </MemoryRouter>
-    </UsersContext.Provider>
+    </Provider>
   );
 }
 
 test("It renders the username supplied from the params", async () => {
-  const users = Results;
-  const username = "TestyMcTesty";
-  renderUser(users, username);
-  const user = await screen.findByText(username);
+  renderUser(testUserName);
+  const user = await screen.findByText(testUserName);
   expect(user).toBeInTheDocument();
 });
 
 test("It renders the user details of the user selected from the username param", async () => {
-  const users = Results;
-  const username = "TestyMcTesty";
-  renderUser(users, username);
-  const userFullName = await screen.findByText("Name: Didier Lacroix");
+  renderUser(testUserName);
+  const userFullName = await screen.findByText(`Name: ${testFullName}`);
   expect(userFullName).toBeInTheDocument();
 });

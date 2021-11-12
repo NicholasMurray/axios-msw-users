@@ -1,9 +1,11 @@
 import { render, screen, waitFor } from "@testing-library/react";
-import App, { usersURL } from "./App";
-import Results from "./mocks/data/results";
-
 import { rest } from "msw";
 import { setupServer } from "msw/node";
+import App from "./App";
+import config from "./config/config";
+import Results from "./mocks/data/results";
+
+const usersURL = config.baseUrl;
 
 const userResponse = rest.get(usersURL.split("?")[0], (req, res, ctx) => {
   return res(

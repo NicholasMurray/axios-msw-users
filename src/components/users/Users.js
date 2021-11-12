@@ -1,27 +1,22 @@
 import { Link } from "react-router-dom";
-import { useContext } from "react";
-import UsersContext from "./../../providers/UsersContext";
-import { AngularIcon, ReactIcon, VueIcon } from "./../icons/index";
+import { useSelector } from "react-redux";
+import Skills from "../skills/Skills";
 
 function Users() {
-  const value = useContext(UsersContext);
+  const users = useSelector((state) => state.users);
 
   return (
     <div className="users-container">
-      {value ? (
+      {users ? (
         <ul aria-labelledby="users-heading">
-          {value.map((user) => (
+          {users.map((user) => (
             <li key={user.login.uuid}>
               <img
                 src={user.picture.medium}
                 alt={user.login.username}
                 title={user.login.username}
               />
-              <div className="icons-container">
-                <AngularIcon />
-                <ReactIcon />
-                <VueIcon />
-              </div>
+              <Skills user={user} />
               <div>
                 <Link to={`/user/${user.login.username}`}>
                   {user.login.username}

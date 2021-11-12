@@ -32,14 +32,3 @@ img {
 a {
   color: #fff;
 }
-
-.icons-container {
-  margin-top: 0.5rem;
-}
-
-svg {
-  width: 1.5rem;
-  height: 1.5rem;
-  margin: 0.25rem;
-  filter: grayscale(1);
-}

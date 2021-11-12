@@ -1,16 +1,16 @@
 import { Link, useParams } from "react-router-dom";
-import { useContext } from "react";
-import UsersContext from "./../../providers/UsersContext";
+import { useSelector } from "react-redux";
+import Skills from "../skills/Skills";
 import "./User.css";
 
 function User() {
   let { username } = useParams();
-  const value = useContext(UsersContext);
+  const users = useSelector((state) => state.users);
 
   return (
     <div className="user-container">
       <h2>{username}</h2>
-      {value
+      {users
         .filter((user) => user.login.username === username)
         .map((filteredUser) => {
           return (
@@ -22,11 +22,12 @@ function User() {
               />
               <div className="user-details">
                 <span>
-                  Name: {filteredUser.name.first} {filteredUser.name.last}
+                  {`Name: ${filteredUser.name.first} ${filteredUser.name.last}`}
                 </span>
                 <span>Phone: {filteredUser.phone}</span>
                 <span>Email: {filteredUser.email}</span>
               </div>
+              <Skills user={filteredUser} />
             </div>
           );
         })}
