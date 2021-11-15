@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { AngularIcon, ReactIcon, VueIcon } from "./../icons/index";
-import "./Skills.css";
+import StyledSkills from "./skills.styles";
 
 function Skills({ user }) {
   const [skills, setSkills] = useState(user.skills);
@@ -24,7 +24,7 @@ function Skills({ user }) {
   };
 
   return (
-    <div id="skills-container">
+    <StyledSkills>
       <AngularIcon
         id={user.login.uuid}
         onClick={clickHandler}
@@ -43,7 +43,7 @@ function Skills({ user }) {
         className={skills.vue ? "skilled" : ""}
         data-skill="vue"
       />
-    </div>
+    </StyledSkills>
   );
 }
 

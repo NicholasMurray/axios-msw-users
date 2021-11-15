@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { BrowserRouter as Router } from "react-router-dom";
 import { Provider } from "react-redux";
-import store from "./../../store/store";
+import store from "../../store/store";
 import Results from "../../mocks/data/results";
 import Users from "./Users";
 
