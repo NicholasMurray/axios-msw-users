@@ -2,7 +2,7 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 import { MemoryRouter, Route } from "react-router-dom";
 import { Provider } from "react-redux";
-import store from "./../../store/store";
+import store from "../../store/store";
 import Results from "../../mocks/data/results";
 import User from "./User";
 

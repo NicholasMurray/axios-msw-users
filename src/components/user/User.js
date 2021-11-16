@@ -1,38 +1,35 @@
+import React from "react";
 import { Link, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Skills from "../skills/Skills";
-import "./User.css";
+import Avatar from "./../avatar/Avatar";
+import UserDetails from "../user-details/UserDetails";
+import StyledUser from "./user.styles";
 
 function User() {
   let { username } = useParams();
   const users = useSelector((state) => state.users);
 
   return (
-    <div className="user-container">
-      <h2>{username}</h2>
+    <StyledUser>
+      <div>
+        <h2>{username}</h2>
+      </div>
       {users
         .filter((user) => user.login.username === username)
         .map((filteredUser) => {
           return (
-            <div key={filteredUser.login.uuid}>
-              <img
-                src={filteredUser.picture.large}
-                alt={filteredUser.login.username}
-                title={filteredUser.login.username}
-              />
-              <div className="user-details">
-                <span>
-                  {`Name: ${filteredUser.name.first} ${filteredUser.name.last}`}
-                </span>
-                <span>Phone: {filteredUser.phone}</span>
-                <span>Email: {filteredUser.email}</span>
-              </div>
+            <React.Fragment key={filteredUser.login.uuid}>
+              <Avatar user={filteredUser} />
               <Skills user={filteredUser} />
-            </div>
+              <UserDetails user={filteredUser} />
+            </React.Fragment>
           );
         })}
-      <Link to="/">Back to Users</Link>
-    </div>
+      <div>
+        <Link to="/">Back to Users</Link>
+      </div>
+    </StyledUser>
   );
 }
 

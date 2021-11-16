@@ -1,21 +1,19 @@
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
+import Avatar from "../avatar/Avatar";
 import Skills from "../skills/Skills";
+import StyledUsers from "./users.styles";
 
 function Users() {
   const users = useSelector((state) => state.users);
 
   return (
-    <div className="users-container">
+    <StyledUsers>
       {users ? (
         <ul aria-labelledby="users-heading">
           {users.map((user) => (
             <li key={user.login.uuid}>
-              <img
-                src={user.picture.medium}
-                alt={user.login.username}
-                title={user.login.username}
-              />
+              <Avatar user={user} />
               <Skills user={user} />
               <div>
                 <Link to={`/user/${user.login.username}`}>
@@ -28,7 +26,7 @@ function Users() {
       ) : (
         <span>No users currently</span>
       )}
-    </div>
+    </StyledUsers>
   );
 }
 
