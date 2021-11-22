@@ -15,6 +15,12 @@ function renderUsers() {
   );
 }
 
+// test("it should display no users message if no users supplied", async () => {
+//   renderUsers();
+//   const user = await screen.findByText("No users currently");
+//   expect(user).toBeInTheDocument();
+// });
+
 test("it should have the correct username TestyMcTesty", async () => {
   const users = Results;
   renderUsers();

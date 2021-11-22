@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { AngularIcon, ReactIcon, VueIcon } from "./../icons/index";
+import { AngularIcon, ReactIcon, VueIcon } from "./../icons";
 import StyledSkills from "./skills.styles";
 import actions from "../../actions";
 
@@ -16,8 +16,6 @@ function Skills({ user }) {
       skills,
       dispatch(actions.userActions.updateSkills(e.currentTarget.id, skills))
     );
-
-    //console.log(e, "clicked");
   };
 
   return (
