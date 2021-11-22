@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { AngularIcon, ReactIcon, VueIcon } from "./../icons/index";
 import StyledSkills from "./skills.styles";
+import actions from "../../actions";
 
 function Skills({ user }) {
   const [skills, setSkills] = useState(user.skills);
@@ -13,14 +14,10 @@ function Skills({ user }) {
 
     setSkills(
       skills,
-      dispatch({
-        type: "UPDATE_SKILL",
-        payload: {
-          id: e.currentTarget.id,
-          skills: skills,
-        },
-      })
+      dispatch(actions.userActions.updateSkills(e.currentTarget.id, skills))
     );
+
+    //console.log(e, "clicked");
   };
 
   return (
