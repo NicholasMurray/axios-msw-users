@@ -140,3 +140,25 @@ test("It should dispatch an action on click to update the angular skill", async 
     userActions.updateSkills(testUser.login.uuid, testSkills)
   );
 });
+
+test("It should dispatch an action on click to update the vue skill", async () => {
+  testUser.skills = {
+    angular: true,
+    react: true,
+    vue: true,
+  };
+  const { container } = renderSkills(testUser);
+  const vueSkillIcon = container.querySelector('[data-skill="vue"]');
+  fireEvent.click(vueSkillIcon);
+
+  const testSkills = {
+    angular: true,
+    react: true,
+    vue: false,
+  };
+
+  expect(store.dispatch).toHaveBeenCalledTimes(1);
+  expect(store.dispatch).toHaveBeenCalledWith(
+    userActions.updateSkills(testUser.login.uuid, testSkills)
+  );
+});
